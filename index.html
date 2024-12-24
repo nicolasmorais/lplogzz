@@ -14,7 +14,7 @@
 
     body {
       font-family: 'Sora', sans-serif;
-      background-color: #f7f7f7;
+      background-color: #ffffff;
       color: #333;
       overflow-x: hidden;
     }
@@ -30,25 +30,84 @@
       margin-bottom: 20px;
     }
 
-    .gallery {
+    .guarantee-section {
       display: flex;
-      gap: 10px;
-      margin-bottom: 20px;
-      overflow-x: hidden;
-      overflow-x: auto; /* Permitir rolagem horizontal */
-      scroll-behavior: smooth; /* Rolagem suave */
-      -webkit-overflow-scrolling: touch; /* Suporte para rolagem no mobile */
-    
-    }
-
-    .gallery img {
-      flex-shrink: 0;
-      width: 500px;
-      height: 500px;
+      flex-direction: column; /* Empilha os itens verticalmente em telas pequenas */
+      align-items: center; /* Centraliza os itens */
+      justify-content: center; /* Centraliza o conteúdo */
+      padding: 20px;
+      background-color: #f8f8f8;
       border-radius: 12px;
-      object-fit: cover;
-
+      margin: 20px 0;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     }
+
+    /* Estilo para o conteúdo de texto da garantia */
+    .guarantee-content {
+      text-align: center; /* Centraliza o texto */
+      margin-bottom: 20px;
+    }
+
+    .guarantee-content h2 {
+      font-size: 22px;
+      font-weight: bold;
+      color: #333;
+      margin-bottom: 15px;
+    }
+
+    .guarantee-content p {
+      font-size: 16px;
+      color: #555;
+      line-height: 1.6;
+    }
+
+    /* Estilo para a imagem da garantia */
+    .guarantee-image {
+      display: flex;
+      justify-content: center; /* Centraliza a imagem horizontalmente */
+      width: 100%; /* Garante que a imagem ocupe a largura disponível */
+    }
+
+    .guarantee-image img {
+      max-width: 100%; /* A imagem pode ter até 100% da largura disponível */
+      height: auto; /* Mantém a proporção da imagem */
+      border-radius: 8px;
+    }
+
+    /* Responsividade para telas menores */
+    @media (min-width: 768px) {
+      .guarantee-section {
+        flex-direction: row; /* Para telas maiores, exibe a imagem ao lado do texto */
+        align-items: center; /* Alinha os itens no centro */
+        justify-content: space-between; /* Espaço entre a imagem e o texto */
+      }
+
+      .guarantee-content {
+        text-align: left; /* Alinha o texto à esquerda */
+        margin-right: 20px; /* Adiciona espaço à direita */
+      }
+
+      .guarantee-image img {
+        max-width: 200px; /* Limita o tamanho da imagem */
+      }
+    }
+
+.gallery {
+  display: flex;
+  justify-content: center; /* Centraliza a imagem */
+  align-items: center; /* Alinha verticalmente */
+  margin-bottom: 20px;
+  width: 100%; /* Garante que a galeria ocupe toda a largura disponível */
+}
+
+.gallery img {
+  width: 500px; /* Largura da imagem */
+  height: 500px; /* Altura da imagem */
+  border-radius: 12px;
+  object-fit: cover;
+}
+
+
 
     .product-name {
       font-size: 24px;
@@ -136,22 +195,35 @@
     }
 
     .dynamic-button {
-      display: block;
-      width: 100%;
-      text-align: center;
-      font-size: 20px;
-      font-weight: bold;
-      color: #fff;
-      background-color: #25D366;
-      padding: 15px;
-      border: none;
-      border-radius: 12px;
-      margin-bottom: 20px;
-      transition: background-color 0.3s ease;
-      cursor: pointer;
-      margin-top: 10px;
-          font-family: 'Sora';
-    }
+  display: block;
+  width: 100%; /* Faz o botão ocupar toda a largura do contêiner */
+  text-align: center; /* Centraliza o texto dentro do botão */
+  font-size: 20px; /* Tamanho da fonte */
+  font-weight: bold; /* Fonte em negrito */
+  color: #fff; /* Cor do texto branco */
+  background-color: #25D366; /* Cor de fundo verde */
+  padding: 15px; /* Espaçamento interno */
+  border: none; /* Remove qualquer borda padrão */
+  border-radius: 12px; /* Bordas arredondadas */
+  margin-bottom: 20px; /* Espaço inferior */
+  margin-top: 10px; /* Espaço superior */
+  transition: background-color 0.3s ease, box-shadow 0.3s ease; /* Transição suave para a cor de fundo e sombra */
+  cursor: pointer; /* Muda o cursor para a mãozinha ao passar o mouse */
+  font-family: 'Sora', sans-serif; /* Fonte 'Sora' */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Sombra suave ao redor do botão */
+}
+
+/* Efeito de hover - quando o mouse passa sobre o botão */
+.dynamic-button:hover {
+  background-color: #128C7E; /* Cor de fundo mais escura no hover */
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2); /* Aumenta a sombra no hover */
+}
+
+/* Efeito de foco - quando o botão recebe foco (ex: via teclado) */
+.dynamic-button:focus {
+  outline: none; /* Remove a borda de foco padrão */
+  box-shadow: 0 0 0 4px rgba(37, 211, 102, 0.3); /* Adiciona uma borda de foco verde */
+}
 
     .dynamic-button:hover {
       background-color: #128C7E;
@@ -259,12 +331,10 @@
     </div>
 
     <div class="gallery">
-      <img src="https://iili.io/2OiiU7f.jpg" alt="Produto 1">
-      <img src="https://iili.io/2Oiivgs.jpg" alt="Produto 2">
-      <img src="https://i.postimg.cc/xjXPMcM6/Sustentabilidade-1.png" alt="Produto 3">
+      <img src="5.JPG" alt="Produto 1">
     </div>
 
-    <div class="product-name">Produto Incrível</div>
+    <div class="product-name">Organic Lizz - Resultado de Salão em Casa</div>
 
     <div class="stars">★★★★★ (233)</div>
 
@@ -356,9 +426,7 @@
       </div>
     </div>
 
-    <div class="info-section">
-      <img src="imagem-info.jpg" alt="Imagem Informativa">
-    </div>
+  
 
     <div class="whatsapp-button">
       <a href="https://api.whatsapp.com/send?phone=+55xxxxxx" target="_blank">
@@ -366,6 +434,75 @@
       </a>
     </div>
   </div>
+   <div class="guarantee-section">
+    <div class="guarantee-content">
+      <h2>Garantia Incondicional de 30 Dias!</h2>
+      <p>A qualidade desse produto é tão garantida que você terá 30 dias para testá-lo e, caso não te satisfaça por qualquer motivo, basta entrar em contato conosco e solicitar o reembolso do seu dinheiro que devolveremos todo o valor pago.</p>
+    </div>
+    <div class="guarantee-image">
+      <img src="https://i.postimg.cc/wMMLkb1t/selo.gif" alt="Garantia Incondicional">
+    </div>
+  </div>
+
+<!-- Seção de pagamento na entrega -->
+<div style="background-color: #ffffff; padding: 40px; border-radius: 10px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); margin-top: 40px; font-family: sora; text-align: center;">
+  <h2 style="font-size: 26px; color: #2c3e50; font-weight: 700; margin-bottom: 20px;">Como funciona a entrega?</h2>
+  
+  <p style="font-size: 18px; color: #34495e; line-height: 1.6; margin-bottom: 30px;">
+    Você só paga quando o produto chegar na porta da sua casa!
+    <br><br>
+    Sabemos como é chato comprar na internet sem saber se o produto vai chegar com segurança. Por isso, ao comprar este produto, você só paga quando ele chegar em sua casa! Mais seguro, mais fácil e revolucionário!
+  </p>
+  
+  <div style="display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; margin-bottom: 30px;">
+    <div style="flex: 1 1 220px; text-align: center; padding: 15px; background-color: #ecf0f1; border-radius: 8px; margin: 10px;">
+      <strong style="font-size: 22px; color: #2ecc71;">#1</strong>
+      <p style="font-size: 16px; color: #7f8c8d;">Você agenda a entrega do seu produto.</p>
+    </div>
+    
+    <div style="flex: 1 1 220px; text-align: center; padding: 15px; background-color: #ecf0f1; border-radius: 8px; margin: 10px;">
+      <strong style="font-size: 22px; color: #2ecc71;">#2</strong>
+      <p style="font-size: 16px; color: #7f8c8d;">Acompanha em tempo real o produto em rota de entrega.</p>
+    </div>
+    
+    <div style="flex: 1 1 220px; text-align: center; padding: 15px; background-color: #ecf0f1; border-radius: 8px; margin: 10px;">
+      <strong style="font-size: 22px; color: #2ecc71;">#3</strong>
+      <p style="font-size: 16px; color: #7f8c8d;">Quando sua compra chegar, é só pagar direto pro entregador. Prontinho!</p>
+    </div>
+  </div>
+
+
+
+<!-- Área abaixo dos depoimentos -->
+<div style="text-align: center; padding: 20px; background-color: #ffffff; margin-top: 20px;">
+  <p style="font-size: 18px; color: #333; margin-bottom: 10px;">Está com dúvidas? Nos chame no WhatsApp!</p>
+  
+  
+
+  <!-- Botão do WhatsApp -->
+  <a href="https://wa.me/5511999999999" target="_blank" style="display: inline-block; background-color: #25D366; color: #fff; font-size: 16px; padding: 12px 30px; border-radius: 5px; text-decoration: none; font-weight: bold;">
+    Falar no WhatsApp
+  </a>
+</div>
+
+  
+  <footer style="background-color: #f8f8f8; padding: 20px; text-align: center; font-size: 14px; color: #333;">
+  <div style="margin-bottom: 10px;">
+    <p><strong>CNPJ:</strong> 12.345.678/0001-90</p>
+    <p><strong>Endereço:</strong> Rua Exemplo, 123, Bairro Exemplo, Cidade, Estado, CEP 12345-678</p>
+  </div>
+
+  <div style="margin-bottom: 10px;">
+    <p>&copy; 2024 Nome da Sua Empresa. Todos os direitos reservados.</p>
+  </div>
+
+  <div>
+    <p style="font-size: 12px; color: #777;">
+      Disclaimer: Este conteúdo não é patrocinado, endossado ou administrado pelo TikTok. As opiniões expressas aqui são de responsabilidade exclusiva da empresa. O TikTok não tem vínculo com os produtos ou serviços apresentados nesta página.
+    </p>
+  </div>
+</footer>
+
 
 <script>
   // Script para selecionar o kit e atualizar a mensagem dinâmica
@@ -388,7 +525,7 @@
       offerMessage.textContent = offer;
       
       // Atualiza o botão de pedido
-      button.textContent = `Ir para Checkout - R$ ${price}`;
+      button.textContent = `Fazer Pedido - R$ ${price}`;
       
       // Define o link de checkout de acordo com o kit selecionado
       switch (kit.querySelector('span').textContent) {
