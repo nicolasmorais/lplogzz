@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mini Página de Vendas</title>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Sora', sans-serif;
+      background-color: #f7f7f7;
+      color: #333;
+      overflow-x: hidden;
+    }
+
+    .container {
+      padding: 20px;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .logo {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .gallery {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 20px;
+      overflow-x: hidden;
+      overflow-x: auto; /* Permitir rolagem horizontal */
+      scroll-behavior: smooth; /* Rolagem suave */
+      -webkit-overflow-scrolling: touch; /* Suporte para rolagem no mobile */
+    
+    }
+
+    .gallery img {
+      flex-shrink: 0;
+      width: 500px;
+      height: 500px;
+      border-radius: 12px;
+      object-fit: cover;
+
+    }
+
+    .product-name {
+      font-size: 24px;
+      font-weight: bold;
+      text-align: center;
+      margin-bottom: 10px;
+    }
+
+    .stars {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #ffc107;
+      font-size: 18px;
+    }
+
+    .selection-section {
+      margin-bottom: 20px;
+    }
+
+    .selection-title {
+      font-size: 18px;
+      font-weight: bold;
+      margin-bottom: 10px;
+      text-align: center;
+    }
+
+    .kits {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      margin-bottom: 20px;
+    }
+
+    .kit {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 15px;
+      background-color: #fff;
+      border: 2px solid #ddd;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: border-color 0.3s ease;
+      position: relative;
+    }
+
+    .kit.selected {
+      border-color: #25D366;
+    }
+
+    .kit img {
+      width: 80px;
+      height: 80px;
+      border-radius: 8px;
+      object-fit: cover;
+    }
+
+    .kit-info {
+      flex-grow: 1;
+      margin-left: 15px;
+    }
+
+    .kit-info span {
+      display: block;
+      font-size: 16px;
+      font-weight: bold;
+    }
+
+    .kit-info .price-per-unit {
+      font-size: 14px;
+      color: #25D366;
+    }
+
+    .tag-best-seller {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    background-color: #bc23ff;
+    color: #fff;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 5px 10px;
+    border-radius: 8px;
+
+    }
+
+    .dynamic-button {
+      display: block;
+      width: 100%;
+      text-align: center;
+      font-size: 20px;
+      font-weight: bold;
+      color: #fff;
+      background-color: #25D366;
+      padding: 15px;
+      border: none;
+      border-radius: 12px;
+      margin-bottom: 20px;
+      transition: background-color 0.3s ease;
+      cursor: pointer;
+      margin-top: 10px;
+          font-family: 'Sora';
+    }
+
+    .dynamic-button:hover {
+      background-color: #128C7E;
+    }
+
+    .info-section {
+      text-align: center;
+    }
+
+    .info-section img {
+      width: 100%;
+      max-width: 600px;
+      border-radius: 12px;
+      margin-top: 20px;
+    }
+
+    .testimonials {
+      margin-top: 20px;
+      margin-bottom: 20px;
+    }
+
+    .testimonials-title {
+      font-size: 18px;
+      font-weight: bold;
+      text-align: center;
+      margin-bottom: 15px;
+    }
+
+    .testimonial-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 15px;
+    }
+
+    .testimonial {
+      background-color: #fff;
+      padding: 15px;
+      border: 1px solid #ddd;
+      border-radius: 12px;
+      text-align: center;
+      font-size: 14px;
+    }
+
+    .testimonial strong {
+      display: block;
+      margin-top: 10px;
+      font-weight: bold;
+    }
+
+    .whatsapp-button {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: #25D366;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      cursor: pointer;
+    }
+
+    .whatsapp-button img {
+      width: 30px;
+      height: 30px;
+    }
+
+    .dynamic-message {
+      text-align: center;
+      margin: 20px 0;
+      font-size: 14px;
+      color: #555;
+      background-color: #ffc107;
+      padding: 10px;
+      border-radius: 10px;
+      font-weight: bold;
+      color: #000;
+    }
+
+    .dynamic-offer {
+    background-color: #ff034000;
+    padding: 10px;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: bold;
+    color: ##424242;
+    margin-top: 20px;
+    text-align: center;
+}
+
+.image-below-button img {
+  width: 100%;
+  height: auto;
+  text-align: center;
+}
+
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="logo">
+      <img src="https://i.postimg.cc/85P61nBy/Logo-Organic-LIzz.png" alt="Logo da Empresa" width="150">
+    </div>
+
+    <div class="gallery">
+      <img src="https://iili.io/2OiiU7f.jpg" alt="Produto 1">
+      <img src="https://iili.io/2Oiivgs.jpg" alt="Produto 2">
+      <img src="https://i.postimg.cc/xjXPMcM6/Sustentabilidade-1.png" alt="Produto 3">
+    </div>
+
+    <div class="product-name">Produto Incrível</div>
+
+    <div class="stars">★★★★★ (233)</div>
+
+    <div class="selection-section">
+      <div class="selection-title">Selecione a quantidade</div>
+
+      <div class="kits">
+        <div class="kit" data-price="147" data-description="no kit com 1, ideal para uso individual." data-offer="Escolhendo o Kit com 4, você leva mais 3 por R$ 150,00">
+          <img src="https://i.ibb.co/njNDzJ9/1.png" alt="Kit com 1">
+          <div class="kit-info">
+            <span>Kit com 1</span>
+            <span>R$ 147</span>
+            <span class="price-per-unit">R$ 147/un</span>
+          </div>
+        </div>
+        <div class="kit" data-price="247" data-description="no kit com 3, perfeito para compartilhar e economizar mais." data-offer="Escolhendo o Kit com 4, você leva mais 1 por R$ 50,00">
+          <img src="https://i.ibb.co/1vZ4CkS/2.png" alt="Kit com 3">
+          <div class="kit-info">
+            <span>Kit com 3</span>
+            <span>R$ 247</span>
+            <span class="price-per-unit">R$ 82,33/un</span>
+          </div>
+        </div>
+        <div class="kit" data-price="297" data-description="Excelente escolha!">
+          <span class="tag-best-seller">Mais Vendidos</span>
+          <img src="https://i.ibb.co/cCfLw7x/3.png" alt="Kit com 4">
+          <div class="kit-info">
+            <span>Kit com 4</span>
+            <span>R$ 297</span>
+            <span class="price-per-unit">R$ 74,25/un</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="dynamic-offer" id="offer-message"></div>
+
+    <button class="dynamic-button">Escolha um kit acima</button>
+
+    <!-- Imagem abaixo do botão -->
+<div class="image-below-button">
+  <img src="https://i.ibb.co/GJQBnNb/progressiva222.png" alt="Imagem de Produto">
+</div>
+
+    <div class="testimonials">
+      <div class="testimonials-title">O que nossos clientes estão dizendo:</div>
+      <div class="testimonial-grid">
+        <div class="testimonial">
+          "Produto excelente! Superou minhas expectativas."
+          <strong>- Maria A.</strong>
+        </div>
+
+        <div class="testimonial">
+          "Produto excelente! Superou minhas expectativas."
+          <strong>- Maria A.</strong>
+        </div>
+        <div class="testimonial">
+          "Adorei a qualidade e o design, vou comprar mais!"
+          <strong>- Carla M.</strong>
+        </div>
+        <div class="testimonial">
+          "Muito bom, entrega rápida e o produto é de ótima qualidade."
+          <strong>- Ana P.</strong>
+        </div>
+        <div class="testimonial">
+          "Amei, excelente custo-benefício!"
+          <strong>- Juliana F.</strong>
+        </div>
+        <div class="testimonial">
+          "Amei, excelente custo-benefício!"
+          <strong>- Juliana F.</strong>
+        </div>
+        <div class="testimonial">
+          "Amei, excelente custo-benefício!"
+          <strong>- Juliana F.</strong>
+        </div>
+        <div class="testimonial">
+          "Amei, excelente custo-benefício!"
+          <strong>- Juliana F.</strong>
+        </div>
+        <div class="testimonial">
+          "Amei, excelente custo-benefício!"
+          <strong>- Juliana F.</strong>
+        </div>
+        <div class="testimonial">
+          "Amei, excelente custo-benefício!"
+          <strong>- Juliana F.</strong>
+        </div>
+      </div>
+    </div>
+
+    <div class="info-section">
+      <img src="imagem-info.jpg" alt="Imagem Informativa">
+    </div>
+
+    <div class="whatsapp-button">
+      <a href="https://api.whatsapp.com/send?phone=+55xxxxxx" target="_blank">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
+      </a>
+    </div>
+  </div>
+
+<script>
+  // Script para selecionar o kit e atualizar a mensagem dinâmica
+  const kits = document.querySelectorAll('.kit');
+  const dynamicMessage = document.getElementById('dynamic-message');
+  const offerMessage = document.getElementById('offer-message');
+  const button = document.querySelector('.dynamic-button');
+  let checkoutLink = ''; // Variável para armazenar o link de checkout
+
+  kits.forEach(kit => {
+    kit.addEventListener('click', () => {
+      kits.forEach(item => item.classList.remove('selected')); // Remove a seleção de todos os kits
+      kit.classList.add('selected'); // Adiciona a seleção ao kit clicado
+
+      const price = kit.getAttribute('data-price');
+      const description = kit.getAttribute('data-description');
+      const offer = kit.getAttribute('data-offer');
+      
+      // Atualiza a mensagem dinâmica de acordo com o kit selecionado
+      offerMessage.textContent = offer;
+      
+      // Atualiza o botão de pedido
+      button.textContent = `Ir para Checkout - R$ ${price}`;
+      
+      // Define o link de checkout de acordo com o kit selecionado
+      switch (kit.querySelector('span').textContent) {
+        case 'Kit com 1':
+          checkoutLink = 'https://www.seusite.com.br/checkout-kit-1'; // Link de checkout para o Kit 1
+          break;
+        case 'Kit com 3':
+          checkoutLink = 'https://www.seusite.com.br/checkout-kit-3'; // Link de checkout para o Kit 3
+          break;
+        case 'Kit com 4':
+          checkoutLink = 'https://www.seusite.com.br/checkout-kit-4'; // Link de checkout para o Kit 4
+          break;
+      }
+
+      // Torna o botão um link que redireciona para o checkout
+      button.onclick = () => {
+        window.location.href = checkoutLink; // Redireciona para o link de checkout
+      };
+    });
+  });
+</script>
+
+</body>
+</html>
