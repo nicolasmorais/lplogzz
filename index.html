@@ -353,36 +353,36 @@ var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n
     <div class="stars">★★★★★ (233)</div>
 
     <div class="selection-section">
-      <div class="selection-title">Selecione a quantidade</div>
+  <div class="selection-title">Selecione a quantidade</div>
 
-      <div class="kits">
-        <div class="kit" data-price="147" data-description="no kit com 1, ideal para uso individual." data-offer="Escolhendo o Kit com 4, você leva mais 3 por R$ 150,00">
-          <img src="https://i.ibb.co/njNDzJ9/1.png" alt="Kit com 1">
-          <div class="kit-info">
-            <span>Kit com 1</span>
-            <span>R$ 147</span>
-            <span class="price-per-unit">R$ 147/un</span>
-          </div>
-        </div>
-        <div class="kit" data-price="247" data-description="no kit com 3, perfeito para compartilhar e economizar mais." data-offer="Escolhendo o Kit com 4, você leva mais 1 por R$ 50,00">
-          <img src="https://i.ibb.co/1vZ4CkS/2.png" alt="Kit com 3">
-          <div class="kit-info">
-            <span>Kit com 3</span>
-            <span>R$ 247</span>
-            <span class="price-per-unit">R$ 82,33/un</span>
-          </div>
-        </div>
-        <div class="kit" data-price="297" data-description="Excelente escolha!">
-          <span class="tag-best-seller">Mais Vendidos</span>
-          <img src="https://i.ibb.co/cCfLw7x/3.png" alt="Kit com 4">
-          <div class="kit-info">
-            <span>Kit com 4</span>
-            <span>R$ 297</span>
-            <span class="price-per-unit">R$ 74,25/un</span>
-          </div>
-        </div>
+  <div class="kits">
+    <div class="kit" data-price="147" data-description="no kit com 1, ideal para uso individual." data-offer="Escolhendo o Kit com 4, você leva mais 3 por R$ 150,00">
+      <img src="https://i.ibb.co/njNDzJ9/1.png" alt="Kit com 1">
+      <div class="kit-info">
+        <span>Kit com 1</span>
+        <span>R$ 147</span>
+        <span class="price-per-unit">R$ 147/un</span>
       </div>
     </div>
+    <div class="kit" data-price="247" data-description="no kit com 3, perfeito para compartilhar e economizar mais." data-offer="Escolhendo o Kit com 4, você leva mais 1 por R$ 50,00">
+      <img src="https://i.ibb.co/1vZ4CkS/2.png" alt="Kit com 3">
+      <div class="kit-info">
+        <span>Kit com 3</span>
+        <span>R$ 247</span>
+        <span class="price-per-unit">R$ 82,33/un</span>
+      </div>
+    </div>
+    <div class="kit" data-price="297" data-description="Excelente escolha!">
+      <span class="tag-best-seller">Mais Vendidos</span>
+      <img src="https://i.ibb.co/cCfLw7x/3.png" alt="Kit com 4">
+      <div class="kit-info">
+        <span>Kit com 4</span>
+        <span>R$ 297</span>
+        <span class="price-per-unit">R$ 74,25/un</span>
+      </div>
+    </div>
+  </div>
+</div>
 
     <div class="dynamic-offer" id="offer-message"></div>
 
@@ -519,48 +519,67 @@ var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n
 
 
 <script>
-  // Script para selecionar o kit e atualizar a mensagem dinâmica
-  const kits = document.querySelectorAll('.kit');
-  const dynamicMessage = document.getElementById('dynamic-message');
-  const offerMessage = document.getElementById('offer-message');
-  const button = document.querySelector('.dynamic-button');
-  let checkoutLink = ''; // Variável para armazenar o link de checkout
+  document.addEventListener('DOMContentLoaded', function() {
+    const kits = document.querySelectorAll('.kit');
+    const dynamicMessage = document.getElementById('dynamic-message');
+    const offerMessage = document.getElementById('offer-message');
+    const button = document.querySelector('.dynamic-button');
+    let checkoutLink = ''; // Variável para armazenar o link de checkout
 
-  kits.forEach(kit => {
-    kit.addEventListener('click', () => {
-      kits.forEach(item => item.classList.remove('selected')); // Remove a seleção de todos os kits
-      kit.classList.add('selected'); // Adiciona a seleção ao kit clicado
+    // Verificar se todos os elementos necessários estão presentes
+    if (!kits.length || !offerMessage || !button) {
+      console.error("Elementos necessários não encontrados.");
+      return;
+    }
 
-      const price = kit.getAttribute('data-price');
-      const description = kit.getAttribute('data-description');
-      const offer = kit.getAttribute('data-offer');
-      
-      // Atualiza a mensagem dinâmica de acordo com o kit selecionado
-      offerMessage.textContent = offer;
-      
-      // Atualiza o botão de pedido
-      button.textContent = `Fazer Pedido - R$ ${price}`;
-      
-      // Define o link de checkout de acordo com o kit selecionado
-      switch (kit.querySelector('span').textContent) {
-        case 'Kit com 1':
-          checkoutLink = 'https://entrega.logzz.com.br/pay/mem3w8yrd/1-uni-organic-lizz-147'; // Link de checkout para o Kit 1
-          break;
-        case 'Kit com 3':
-          checkoutLink = 'https://entrega.logzz.com.br/pay/mem3w8yrd/3-uni-organic-lizz-247'; // Link de checkout para o Kit 3
-          break;
-        case 'Kit com 4':
-          checkoutLink = 'https://entrega.logzz.com.br/pay/mem3w8yrd/4-uni-organic-lizz-297-rmkt'; // Link de checkout para o Kit 4
-          break;
-      }
+    kits.forEach(kit => {
+      kit.addEventListener('click', () => {
+        kits.forEach(item => item.classList.remove('selected')); // Remove a seleção de todos os kits
+        kit.classList.add('selected'); // Adiciona a seleção ao kit clicado
 
-      // Torna o botão um link que redireciona para o checkout
-      button.onclick = () => {
-        window.location.href = checkoutLink; // Redireciona para o link de checkout
-      };
+        const price = kit.getAttribute('data-price');
+        const description = kit.getAttribute('data-description');
+        const offer = kit.getAttribute('data-offer');
+        
+        // Atualiza a mensagem dinâmica de acordo com o kit selecionado
+        offerMessage.textContent = offer;
+        
+        // Atualiza o botão de pedido
+        button.textContent = `Fazer Pedido - R$ ${price}`;
+        
+        // Define o link de checkout de acordo com o kit selecionado
+        const kitName = kit.querySelector('.kit-info span').textContent;  // Seleciona o nome do kit
+
+        switch (kitName) {
+          case 'Kit com 1':
+            checkoutLink = 'https://entrega.logzz.com.br/pay/mem3w8yrd/1-uni-organic-lizz-147'; // Link de checkout para o Kit 1
+            break;
+          case 'Kit com 3':
+            checkoutLink = 'https://entrega.logzz.com.br/pay/mem3w8yrd/3-uni-organic-lizz-247'; // Link de checkout para o Kit 3
+            break;
+          case 'Kit com 4':
+            checkoutLink = 'https://entrega.logzz.com.br/pay/mem3w8yrd/4-uni-organic-lizz-297-rmkt'; // Link de checkout para o Kit 4
+            break;
+          default:
+            console.error("Kit não identificado.");
+            return;
+        }
+
+        // Torna o botão um link que redireciona para o checkout
+        button.onclick = () => {
+          if (checkoutLink) {
+            window.location.href = checkoutLink; // Redireciona para o link de checkout
+          } else {
+            console.error("Link de checkout não encontrado.");
+          }
+        };
+      });
     });
   });
 </script>
+
+
+
 
 </body>
 </html>
